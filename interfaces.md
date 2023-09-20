@@ -14,3 +14,16 @@ def checkUserValidation(user):
 ```
 
 Both `User` and `Admin` implement `validated()`, so both can be passed to `checkUserValidation()` to have the method called.
+
+## Gilded Rose
+
+In the case of the famous 'Gilded Rose' kata, a class handles cases for many different products, all changing the same two values 'sell_in' and 'quality'.
+You are tasked with adding a new item to the inventory, which can mean adding a few more lines of code. However, changing the code (and making it longer) every time the inventory changes isn't good, so this is a prime use case for interfaces.
+
+### How it works
+
+An `Item` class can be defined, and then everything in the inventory can implement `Item`, which needs at most two methods (`update_sellin` and `update_quality`, or maybe just `update`).
+
+You don't have to implement a formal interface, especially in languages that don't use them, as long as you use the same methods/properties.
+
+Then `GildedRose` can be simplified to only loop through the array of Items provided, and call their update method(s), and if any items are added or removed over time, it will still work.
