@@ -20,6 +20,10 @@ Both `User` and `Admin` implement `validated()`, so both can be passed to `check
 In the case of the famous 'Gilded Rose' kata, a class handles cases for many different products, all changing the same two values 'sell_in' and 'quality'.
 You are tasked with adding a new item to the inventory, which can mean adding a few more lines of code. However, changing the code (and making it longer) every time the inventory changes isn't good, so this is a prime use case for interfaces.
 
+In the example provided, the Item class is modified to become an interface, and a class implementing that interface is created for each type of object.
+
+All that is needed is for the required methods to be added (in this case \_\_init\_\_() and update()), and then anything else can be added as needed. An advantage of this is that for a simple case like Sulfuras, the update() call does nothing, so no other methods need implementing, while every other Item subclass adds update_quality() and update_sell_in() too. If Sulfuras added these methods, they would at best confuse the user, since they would do nothing, but be individually added anyway.
+
 ### How it works
 
 An `Item` class can be defined, and then everything in the inventory can implement `Item`, which needs at most two methods (`update_sellin` and `update_quality`, or maybe just `update`).
