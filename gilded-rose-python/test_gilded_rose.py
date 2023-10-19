@@ -1,9 +1,13 @@
-from gilded_rose import Item, GildedRose
+from normal_item import NormalItem
+from backstage_passes import BackstagePasses
+from aged_brie import AgedBrie
+from gilded_rose import GildedRose
+from item import Item
 
 class TestGildedRose:
     def test_update_decrements_normal_sell_in(self):
         original_sell_in = 0
-        items = [Item("potion bottle", sell_in=original_sell_in, quality=5)]
+        items = [NormalItem("potion bottle", sell_in=original_sell_in, quality=5)]
         gilded_rose = GildedRose(items)
 
         gilded_rose.update_quality()
@@ -13,7 +17,7 @@ class TestGildedRose:
     def test_update_decrements_normal_item_quality(self):
         original_sell_in = 10
         original_quality = 10
-        items = [Item("potion bottle", sell_in=original_sell_in, quality=original_quality)]
+        items = [NormalItem("potion bottle", sell_in=original_sell_in, quality=original_quality)]
         gilded_rose = GildedRose(items)
 
         gilded_rose.update_quality()
@@ -25,7 +29,7 @@ class TestGildedRose:
     def test_item_quality_cannot_be_below_0(self):
         original_sell_in = 14
         original_quality = 0
-        items = [Item("potion bottle", sell_in=original_sell_in, quality=original_quality)]
+        items = [NormalItem("potion bottle", sell_in=original_sell_in, quality=original_quality)]
         gilded_rose = GildedRose(items)
 
         gilded_rose.update_quality()
@@ -36,7 +40,7 @@ class TestGildedRose:
     def test_normal_item_quality_decrements_faster_after_sell_in(self):
         original_sell_in = 0
         original_quality = 5
-        items = [Item("potion bottle", sell_in=original_sell_in, quality=original_quality)]
+        items = [NormalItem("potion bottle", sell_in=original_sell_in, quality=original_quality)]
         gilded_rose = GildedRose(items)
 
         gilded_rose.update_quality()
@@ -47,7 +51,7 @@ class TestGildedRose:
     def test_aged_brie_quality_increases_over_time(self):
         original_sell_in = 5000
         original_quality = 5
-        items = [Item("Aged Brie", sell_in=original_sell_in, quality=original_quality)]
+        items = [AgedBrie("Aged Brie", sell_in=original_sell_in, quality=original_quality)]
         gilded_rose = GildedRose(items)
 
         gilded_rose.update_quality()
@@ -58,7 +62,7 @@ class TestGildedRose:
     def test_quality_cannot_exeed_50(self):
         original_sell_in = 42
         original_quality = 50
-        items = [Item("Aged Brie", sell_in=original_sell_in, quality=original_quality)]
+        items = [AgedBrie("Aged Brie", sell_in=original_sell_in, quality=original_quality)]
         gilded_rose = GildedRose(items)
 
         gilded_rose.update_quality()
@@ -82,7 +86,7 @@ class TestGildedRose:
 
     def test_concert_tickets_lose_all_quality_after_sell_in(self):
         original_sell_in = 0
-        original_item = Item("Backstage passes to a TAFKAL80ETC concert", sell_in=original_sell_in, quality=40)
+        original_item = BackstagePasses("Backstage passes to a TAFKAL80ETC concert", sell_in=original_sell_in, quality=40)
         items = [original_item]
         gilded_rose = GildedRose(items)
 
@@ -94,7 +98,7 @@ class TestGildedRose:
     def test_concert_tickets_gain_quality_long_before_sell_in(self):
         original_sell_in = 11
         original_quality = 40
-        original_item = Item("Backstage passes to a TAFKAL80ETC concert", sell_in=original_sell_in, quality=original_quality)
+        original_item = BackstagePasses("Backstage passes to a TAFKAL80ETC concert", sell_in=original_sell_in, quality=original_quality)
         items = [original_item]
         gilded_rose = GildedRose(items)
 
@@ -106,7 +110,7 @@ class TestGildedRose:
     def test_concert_tickets_gain_quality_10_days_before_sell_in(self):
         original_sell_in = 10
         original_quality = 10
-        original_item = Item("Backstage passes to a TAFKAL80ETC concert", sell_in=original_sell_in, quality=original_quality)
+        original_item = BackstagePasses("Backstage passes to a TAFKAL80ETC concert", sell_in=original_sell_in, quality=original_quality)
         items = [original_item]
         gilded_rose = GildedRose(items)
 
@@ -119,7 +123,7 @@ class TestGildedRose:
     def test_concert_tickets_gain_more_quality_5_days_before_sell_in(self):
         original_sell_in = 5
         original_quality = 10
-        original_item = Item("Backstage passes to a TAFKAL80ETC concert", sell_in=original_sell_in, quality=original_quality)
+        original_item = BackstagePasses("Backstage passes to a TAFKAL80ETC concert", sell_in=original_sell_in, quality=original_quality)
         items = [original_item]
         gilded_rose = GildedRose(items)
 
