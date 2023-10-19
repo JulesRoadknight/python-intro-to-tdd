@@ -1,3 +1,4 @@
+from sulfuras import Sulfuras
 from normal_item import NormalItem
 from backstage_passes import BackstagePasses
 from aged_brie import AgedBrie
@@ -74,7 +75,7 @@ class TestGildedRose:
         original_sell_in = 0
         original_sell_in = 1
         original_quality = 40
-        original_item = Item("Sulfuras, Hand of Ragnaros", sell_in=original_sell_in, quality=original_quality)
+        original_item = Sulfuras("Sulfuras, Hand of Ragnaros", sell_in=original_sell_in, quality=original_quality)
         items = [original_item]
         gilded_rose = GildedRose(items)
 
